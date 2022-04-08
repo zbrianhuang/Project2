@@ -17,14 +17,16 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.BoxLayout;
 
+import java.lang.Math;
 public class Main {
 	public static void main(String[] args) {
 		JFrame mainMenu = new JFrame();
 		Dimension size
         = Toolkit.getDefaultToolkit().getScreenSize();
-		mainMenu.setSize(1080,720);
-		int width = (int)size.getWidth();
+    int width = (int)size.getWidth();
 	    int height = (int)size.getHeight();
+		mainMenu.setSize(width,height);
+		
 		int scale=width/height;
 		mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainMenu.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -43,7 +45,7 @@ public class Main {
 		mainMenu.getContentPane().add(north, BorderLayout.NORTH);
 		
 		JLabel lblNewLabel = new JLabel("Internet Service Plan Calculator");
-		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 48));
+		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, width*22));
 		north.add(lblNewLabel);
 		
 		JPanel west = new JPanel();
@@ -58,13 +60,15 @@ public class Main {
 		
 		
 		JButton exit = new JButton("Exit");
-		exit.addActionListener(e -> exit());
+//		exit.addActionListener(e -> exit());
 		south.add(exit);
 		
-		JButton Calculate = new JButton("Calculate");
-		south.add(Calculate);
+		JButton calculate = new JButton("Calculate");
+    calculate.addActionListener(e ->tempFunc());
+		south.add(calculate);
 		
 		JButton clear = new JButton("Clear");
+    clear.addActionListener(ea -> System.out.println("clear"));
 		south.add(clear);
 		
 		JPanel east = new JPanel();
@@ -80,7 +84,8 @@ public class Main {
 		System.exit(0);
 	}
 	//function to calculate total price
-	public double getPrice(int plan,boolean rental) {
+  //probably pretty obsolete
+	public static double getPrice(int plan,boolean rental) {
 		double price;
 		switch(plan) {
 		case 0://basic plan
@@ -99,11 +104,20 @@ public class Main {
 		if(rental) {
 			price+=12;
 		}
-		return price;//returns price before tax
+    price*=1.0625;//tax
+    price = Math.round(price*100);
+    return price/100;//returns price before tax rounded to two decimal places
 		
 	}
+	public static void tempFunc(){
+   System.out.println(getPrice(2,false)); System.out.println("Button clicked");
+  }
+  public static void clear(){
+    
+  }
+  public static void getOutput(String name,String address, int planType,boolean rental){
+    String out ="";
+    
+  } 
 	
-	public double round(double num) {
-		return num%2;
-	}
 }

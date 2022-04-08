@@ -34,6 +34,9 @@ public class Main {
 	private static JRadioButton basicRadio;
 	private static JRadioButton standardRadio;
 	private static JRadioButton premiumRadio;
+	private static ButtonGroup planRadioBtns;
+	private static ButtonGroup rentalRadioBtns;
+
 	public static void main(String[] args) {
 		JFrame mainMenu = new JFrame();
 		Dimension size
@@ -46,9 +49,7 @@ public class Main {
 		mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainMenu.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		ButtonGroup planRadioBtns;
-		ButtonGroup rentalRadioBtns;
-		
+				
 		/*
 		JButton calculate = new JButton("Calculate");
 		horizontalBox.add(calculate);
@@ -268,6 +269,7 @@ public class Main {
 	  public static void clear(){
 	   nameInput.setText("");
 	   addressInput.setText(""); 
+	   
 	  }
 	  
 	  
@@ -276,9 +278,32 @@ public class Main {
 		String name = nameInput.getText();
 		String addressData=addressInput.getText();
 		int planType;
-		boolean rental;
+		String planString;
+		boolean rental=false;
+		boolean error = false;
+		if(basicRadio.isSelected()) {
+			planType=0;
+			planString = "Basic";
+		}else if(standardRadio.isSelected()) {
+			planType=1;
+			planString = "Standard";
+		}else if(premiumRadio.isSelected()) {
+			planType=2;
+			planString = "Premium";
+		}else {
+			System.out.println("Plan Error");
+			error = true;
+			
+		}
+		
+		if(rentalYesRadio.isSelected()) {
+			rental = true;
+		}else if(!rentalRadioNo.isSelected()) {
+			error = true;
+			System.out.println("rental error!");
+		}
 		System.out.println(addressData);
-	    
+	    clear();
 	    
 	  } 
 		

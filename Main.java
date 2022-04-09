@@ -3,27 +3,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-
-import javax.swing.SpringLayout;
 import javax.swing.JButton;
-import javax.swing.Box;
-import javax.swing.JSplitPane;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JRadioButton;
-import javax.swing.JCheckBox;
 import java.awt.Color;
 
 public class Main {

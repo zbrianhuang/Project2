@@ -43,18 +43,11 @@ public class Main {
         = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int)size.getWidth();
 	    int height = (int)size.getHeight();
-		mainMenu.setSize(553,488);
 		mainMenu.setSize(width,height);
-		int scale=width/height;
 		mainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainMenu.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 				
-		/*
-		JButton calculate = new JButton("Calculate");
-		horizontalBox.add(calculate);
-		calculate.addActionListener(e -> exit());
-		*/
 		JLabel label = new JLabel("");
 		mainMenu.getContentPane().add(label);
 		
@@ -192,6 +185,9 @@ public class Main {
 		clearBtn.addActionListener(e->clear());
 		south.add(clearBtn);
 		
+		JLabel lblNewLabel = new JLabel("Project 2, Contestant 11");
+		south.add(lblNewLabel);
+		
 		JPanel east = new JPanel();
 		mainMenu.getContentPane().add(east, BorderLayout.EAST);
 		
@@ -238,7 +234,7 @@ public class Main {
 	   rentalRadioBtns.clearSelection();
 	  }
 	  
-	  
+	  //takes data from form and compiles it onto a UI using the printOutput/printError functions
 	  public static void calculate(){
 		String name = nameInput.getText();
 		String addressData=addressInput.getText();
@@ -250,6 +246,10 @@ public class Main {
 		int planType=0;
 		double fee;
 		double bill;
+		
+		
+		
+		//input validation
 		if(basicRadio.isSelected()) {
 			planType=0;
 			planString = "Basic";
@@ -270,9 +270,17 @@ public class Main {
 			rentString="$12";
 		}else if(!rentalRadioNo.isSelected()) {
 			error = true;
-			errorString+="Please indicate whether a rental is selected";
+			errorString+="Please indicate whether a rental is selected. ";
 		}
-		
+		if(name.isBlank()) {
+			error = true;
+			errorString+="Name cannot be blank. ";
+			
+		}
+		if(addressData.isBlank()) {
+			error =true;
+			errorString+="Address cannot be blank. ";
+		}
 		fee=getPrice(planType, rental, false);
 		bill=getPrice(planType, rental, true);
 		
@@ -321,13 +329,13 @@ public class Main {
 			JLabel outRentalLbl = new JLabel("Rent:"+rent);
 			panel.add(outRentalLbl);
 			
-			JLabel outFeeLbl = new JLabel("Monthly Fee: "+fee);
+			JLabel outFeeLbl = new JLabel("Monthly Fee: $"+fee);
 			panel.add(outFeeLbl);
 			
 			JLabel outTaxLbl = new JLabel("Tax: 6.625%");
 			panel.add(outTaxLbl);
 			
-			JLabel outBillLbl = new JLabel("Total Monthly Bill: "+bill);
+			JLabel outBillLbl = new JLabel("Total Monthly Bill: $"+bill);
 			panel.add(outBillLbl);
 			
 			
